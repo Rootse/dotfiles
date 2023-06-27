@@ -1,0 +1,74 @@
+## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
+## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
+## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
+## CROSS-SHELL PROMPT
+##
+## rxyhn's starship configuration
+## The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+
+format = """
+$git_branch$git_status$cmd_duration$directory
+$character
+"""
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+[line_break]
+disabled = true
+
+[character]
+success_symbol = " [](#EE9B01)"
+error_symbol = " [](#E7140D)"
+vicmd_symbol = "[  ](#09D03A)"
+
+[hostname]
+ssh_only = true
+format = "[$hostname](bold blue) "
+disabled = false
+
+[cmd_duration]
+min_time = 1
+format = "[](fg:#1D1B1B bg:none)[$duration]($style)[](fg:#1D1B1B bg:#1D1B1B)[](fg:#9C1CEA bg:#1D1B1B)[](fg:#1D1B1B bg:#9C1CEA)[](fg:#9C1CEA bg:none) "
+disabled = false
+style = "fg:#F3F3F3 bg:#1D1B1B"
+
+[directory]
+format = "[](fg:#1D1B1B bg:none)[$path]($style)[](fg:#1D1B1B bg:#1D1B1B)[](fg:#EE9B01 bg:#1D1B1B)[](fg:#1D1B1B bg:#EE9B01)[](fg:#EE9B01 bg:none)"
+style = "fg:#F3F3F3 bg:#1D1B1B"
+truncation_length = 3
+truncate_to_repo=false
+
+[git_branch]
+format = "[](fg:#1D1B1B bg:none)[$branch]($style)[](fg:#1D1B1B bg:#1D1B1B)[](fg:#09D03A bg:#1D1B1B)[](fg:#1D1B1B bg:#09D03A)[](fg:#09D03A bg:none) "
+style = "fg:#F3F3F3 bg:#1D1B1B"
+
+[git_status]
+format="[](fg:#1D1B1B bg:none)[$all_status$ahead_behind]($style)[](fg:#1D1B1B bg:#1D1B1B)[](fg:#02A0DA bg:#1D1B1B)[](fg:#1D1B1B bg:#02A0DA)[](fg:#02A0DA bg:none) "
+style = "fg:#F3F3F3 bg:#1D1B1B"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = ""
+untracked = "?${count}"
+stashed = ""
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "${count}"
+
+[git_commit]
+format = "[\\($hash\\)]($style) [\\($tag\\)]($style)"
+style = "#09D03A"
+
+[git_state]
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+style = "#EE9B01"
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
